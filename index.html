@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>JavaScript print array</title>
+  </head>
+  <body>
+    <pre id="arrPrint"></pre>
+    <script>
+      let slideURL =
+        "https://www.vipkid.com/tp/preparation/lesson?onlineClassId=323539348019541&scheduledDateTime=1628821800000&studentId=2759637&lessonId=846813&curriculumVersion=1&serialNumber=ME-L7-U5-LC1-1&channel=86&showType=1 ";
+      let queryStart = slideURL.split("?")[0];
+      console.log(queryStart);
+      let queryparams = slideURL.split("?")[1];
+      console.log(queryparams);
+      let params = queryparams.split("&");
+      console.log(params);
+      // build data object containing the params key-value pairs
+      let data = {};
+      params.forEach(function (d) {
+        let pair = d.split("=");
+        data[pair[0]] = pair[1];
+        console.log(data);
+      });
+      let onlineClassId = parseInt(data["onlineClassId"]);
+      let lessonId = parseInt(data["lessonId"]);
+      for (let i = 0; i < 144; i++) {
+        onlineClassId++;
+        lessonId++;
+        data["onlineClassId"] = onlineClassId;
+        data["lessonId"] = lessonId;
+        let newUrl = queryStart + "?";
+        Object.keys(data).forEach(
+          (key) => (newUrl = newUrl + key + "=" + data[key] + "&")
+        );
+        newUrl = newUrl.slice(0, -1); // remove trailing "&"
+        console.dir(newUrl);
+        document.write("<BR>");
+        document.write("<BR>");
+        document.write("<BR>");
+        document.write(i + 1);
+        document.write("<BR>");
+        document.write(newUrl);
+      }
+    </script>
+  </body>
+</html>
